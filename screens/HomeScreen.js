@@ -9,6 +9,7 @@ import {
   View
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { MonoText } from '../components/StyledText';
 
@@ -48,6 +49,14 @@ export default class HomeScreen extends React.Component {
             <Image source={require('../assets/images/pig-test.jpeg')}/>
           </View>
 
+          <View style={styles.resourcesContainer}>
+            <MaterialCommunityIcons name="food-fork-drink" size={40} />
+            <MaterialCommunityIcons name="shower" size={40} />
+            <MaterialCommunityIcons name="baseball-bat" size={40} />
+            <MaterialCommunityIcons name="sleep" size={40} />
+            <MaterialCommunityIcons name="music" size={40} />
+          </View>
+
         </ScrollView>
 
       </View>
@@ -71,6 +80,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   conditionsContainer: {
+    marginTop: 30,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  resourcesContainer: {
     marginTop: 30,
     flex: 1,
     flexDirection: 'row',
