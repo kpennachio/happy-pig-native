@@ -26,7 +26,7 @@ export default class HomeScreen extends React.Component {
             Happy Pig
           </Text>
 
-          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-evenly'}}>
+          <View style={styles.conditionsContainer}>
            <View style={{width: 75, height: 50, backgroundColor: 'powderblue'}}>
             <Text style={styles.conditionText}>Hunger</Text>
            </View>
@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
            </View>
           </View>
 
-          <View style={styles.welcomeContainer}>
+          <View style={styles.pigImageContainer}>
             <Image source={require('../assets/images/pig-test.jpeg')}/>
           </View>
 
@@ -65,14 +65,16 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  pigImageContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 20,
   },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  conditionsContainer: {
+    marginTop: 30,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
   logoText: {
     fontSize: 30,
