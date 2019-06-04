@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  AsyncStorage,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -17,12 +16,6 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
-  handleLogout = () => {
-    console.log("clicked logout")
-    AsyncStorage.removeItem('userToken')
-    this.props.navigation.navigate('Auth')
-  }
 
   render() {
     console.log("home screen");
@@ -50,8 +43,8 @@ export default class HomeScreen extends React.Component {
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
 
-            <Text style={styles.getStartedText} onPress={this.handleLogout}>
-              Logout
+            <Text style={styles.getStartedText}>
+              Hello World!
             </Text>
             <Image source={require('../assets/images/pig-test.jpeg')}/>
           </View>
