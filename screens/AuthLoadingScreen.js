@@ -21,8 +21,9 @@ export default class AuthLoadingScreen extends React.Component {
     const userToken = await AsyncStorage.getItem('userToken');
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    setTimeout(() => {this.props.navigation.navigate(userToken ? 'Main' : 'Auth')}, 3000);
+    // setTimeout(() => {this.props.navigation.navigate(userToken ? 'Main' : 'Auth')}, 3000);
 
+    this.props.navigation.navigate(userToken ? 'Main' : 'Auth')
   };
 
   // Render any loading content that you like here
