@@ -60,34 +60,60 @@ class SignInScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <TextInput
-          placeholder="Username"
-          label="Username"
-          name="username"
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({username: text})}
-          value={this.state.text}
-        />
-        <TextInput
-          placeholder="Password"
-          label="Password"
-          name="password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({password: text})}
-          value={this.state.text}
-        />
-        <Button title="Sign in!" onPress={this.login} />
-
+      <View style={styles.container}>
+        <View style={styles.loginBox}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Username"
+              label="Username"
+              name="username"
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({username: text})}
+              value={this.state.text}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Password"
+              label="Password"
+              name="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({password: text})}
+              value={this.state.text}
+            />
+          </View>
+          <Button title="Sign in!" onPress={this.login} />
+        </View>
       </View>
     );
   }
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  loginBox: {
+    paddingTop: 200,
+  },
+  inputContainer: {
+    justifyContent: "center",
+    paddingTop: 10,
+    flexDirection: "row"
+  },
+  textInput: {
+    height: 40,
+    flex: 0.7,
+    borderColor: 'gray',
+    borderWidth: 1,
+  }
+})
 
 
 function mapDispatchToProps(dispatch) {
