@@ -10,10 +10,10 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { connect } from 'react-redux';
 
-import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -30,25 +30,13 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
+
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
+            <Text style={styles.getStartedText}>
+              {`Welcome ${this.props.username}!`}
+            </Text>
 
             <Text style={styles.getStartedText} onPress={this.handleLogout}>
               Logout
@@ -56,20 +44,8 @@ export default class HomeScreen extends React.Component {
             <Image source={require('../assets/images/pig-test.jpeg')}/>
           </View>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }
@@ -196,3 +172,12 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+
+function mapStateToProps(state) {
+  return {
+    username: state.username
+  }
+}
+
+export default connect(mapStateToProps)(HomeScreen);

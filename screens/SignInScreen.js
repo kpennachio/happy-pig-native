@@ -9,8 +9,11 @@ import {
   TextInput
 } from 'react-native';
 
+import { connect } from 'react-redux'
 
-export default class SignInScreen extends React.Component {
+
+
+class SignInScreen extends React.Component {
   static navigationOptions = {
     title: 'Please sign in',
   };
@@ -47,8 +50,9 @@ export default class SignInScreen extends React.Component {
       } else {
         // or set jwt token in local storage and current user info in state
         // redirect to dashboard page
-        console.log("looks good!");
+        console.log(response);
         AsyncStorage.setItem('jwt', response.jwt);
+        this.props.getUsername(response.username);
         this.props.navigation.navigate('Main');
         }
     })
@@ -83,8 +87,13 @@ export default class SignInScreen extends React.Component {
     );
   }
 
-  _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
-  };
 }
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getUsername: (username) => dispatch({type: "GET_USERNAME", payload: username})
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignInScreen);
