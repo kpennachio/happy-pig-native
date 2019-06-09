@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Button,
   TouchableOpacity,
   View,
   AsyncStorage,
@@ -18,10 +19,11 @@ class HomeScreen extends React.Component {
     header: null,
   };
 
-  handleLogout = () => {
-    console.log("clicked logout")
-    AsyncStorage.removeItem('userToken')
-    this.props.navigation.navigate('Auth')
+  showJwt = () => {
+    AsyncStorage.getItem("jwt")
+    .then(jwt => {
+      console.log(jwt)
+    })
   }
 
   render() {
@@ -36,9 +38,8 @@ class HomeScreen extends React.Component {
             <Text style={styles.getStartedText}>
               {`Welcome ${this.props.username}!`}
             </Text>
-
-            <Text style={styles.getStartedText} onPress={this.handleLogout}>
-              Logout
+            <Text onPress={this.showJwt}>
+              {"show jwt"}
             </Text>
           </View>
 

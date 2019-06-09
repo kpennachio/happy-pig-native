@@ -21,8 +21,32 @@ class SignInScreen extends React.Component {
   state = {
     username: "",
     password: "",
-    message: ""
+    message: "",
   }
+
+  // componentDidMount() {
+  //   const jwt = AsyncStorage.getItem('jwt')
+  //   console.log("auto login is happening")
+  //
+  //   // auto login for app if jwt exists
+	// 	if (jwt){
+	// 		fetch(`http://localhost:3000/api/v1/auto_login`, {
+	// 			headers: {
+	// 				"Authorization": jwt
+	// 			}
+	// 		})
+	// 			.then(res => res.json())
+	// 			.then((response) => {
+	// 				if (response.error) {
+  //           console.log(response.error)
+	// 				} else {
+  //           console.log("testing", response.user);
+  //           this.props.getUsername(response.user.username);
+  //           this.props.navigation.navigate('Main');
+	// 				}
+	// 			})
+	// 	}
+  // }
 
   login = () => {
     console.log("login");
@@ -52,11 +76,16 @@ class SignInScreen extends React.Component {
         // redirect to dashboard page
         console.log(response);
         AsyncStorage.setItem('jwt', response.jwt);
-        this.props.getUsername(response.username);
+        this.props.getUsername(response.user.username);
         this.props.navigation.navigate('Main');
         }
     })
   }
+
+  nextFieldFocus = () => {
+    this.field2.focus();
+  }
+
 
   render() {
     return (
@@ -72,18 +101,24 @@ class SignInScreen extends React.Component {
               style={styles.textInput}
               onChangeText={(text) => this.setState({username: text})}
               value={this.state.text}
+              returnKeyType="next"
+              onSubmitEditing={this.nextFieldFocus}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
+              ref={input => { this.field2 = input }}
               placeholder="Password"
               label="Password"
               name="password"
+              secureTextEntry={true}
               autoCapitalize="none"
               autoCorrect={false}
               style={styles.textInput}
               onChangeText={(text) => this.setState({password: text})}
               value={this.state.text}
+              returnKeyType="go"
+              onSubmitEditing={this.login}
             />
           </View>
           <Button title="Sign in!" onPress={this.login} />
@@ -110,6 +145,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     flex: 0.7,
+    paddingLeft: 6,
     borderColor: 'gray',
     borderWidth: 1,
   }
