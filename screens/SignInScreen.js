@@ -77,6 +77,7 @@ class SignInScreen extends React.Component {
         console.log(response);
         AsyncStorage.setItem('jwt', response.jwt);
         this.props.getUsername(response.user.username);
+        this.props.getUserId(response.user.id);
         this.props.navigation.navigate('Main');
         }
     })
@@ -154,7 +155,8 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUsername: (username) => dispatch({type: "GET_USERNAME", payload: username})
+    getUsername: (username) => dispatch({type: "GET_USERNAME", payload: username}),
+    getUserId: (id) => dispatch({type: "GET_ID", payload: id})
   }
 }
 

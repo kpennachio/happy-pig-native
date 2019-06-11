@@ -4,6 +4,7 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator } from 
 import MainTabNavigator from './MainTabNavigator';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import SignInScreen from '../screens/SignInScreen';
+import NewAnimalScreen from '../screens/NewAnimalScreen';
 
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
@@ -11,6 +12,7 @@ const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 export default createAppContainer(createSwitchNavigator(
   {
     Main: MainTabNavigator,
+    New: NewAnimalScreen,
     AuthLoading: AuthLoadingScreen,
     Auth: AuthStack,
   },

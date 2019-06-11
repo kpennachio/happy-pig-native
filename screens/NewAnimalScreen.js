@@ -14,7 +14,7 @@ import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
 
 
-class HomeScreen extends React.Component {
+class NewAnimalScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -39,13 +39,6 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/users/${this.props.userId}`)
-    .then(resp => resp.json())
-    .then(user => {
-      if (!user.animal) {
-        this.props.navigation.navigate('New');
-      }
-    })
   }
 
 
@@ -60,7 +53,7 @@ class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
             <Text style={styles.getStartedText}>
-              {`Welcome ${this.props.username}!`}
+              {`New Animal Screen`}
             </Text>
           </View>
 
@@ -161,4 +154,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HomeScreen);
+export default connect(mapStateToProps)(NewAnimalScreen);
